@@ -7,6 +7,7 @@ import {Sidebar} from "./Sidebar.tsx";
 const Page = styled(Row)`
     width: 100%;
     min-height: 100%;
+    overflow: hidden;
 `;
 
 type Props = {

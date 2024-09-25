@@ -8,10 +8,12 @@ const HeaderBar = styled(Row).attrs({$crossAxisAlignment: 'center'})`
     padding: ${SPACING.SM.px};
     border-bottom: 1px solid darkgrey;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
 `;
 
 const Layout = styled(Column)`
     width: 100%;
+    overflow-y: auto;
 `;
 
 type Props = {

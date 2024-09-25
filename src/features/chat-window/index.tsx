@@ -13,6 +13,7 @@ import {useReceiveMessage} from "./hooks/useReceiveMessage.ts";
 
 const BottomAnchorColumn = styled(Column)`
     margin-top: auto;
+    position: sticky;
 `;
 
 const FakeReceiveMessageButton = styled(Button)`
