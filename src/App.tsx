@@ -50,8 +50,7 @@ function App() {
         setNameInputValue(e.target.value);
     }, []);
 
-    const handleDeleteChatGroupCliick = useCallback(() => {
-        dispatch();
+    const handleDeleteChatGroupClick = useCallback(() => {
     }, []);
 
     return (
@@ -83,7 +82,7 @@ function App() {
                                 </IconButton>
                             )}
                         </Row>
-                        <DeleteButton>
+                        <DeleteButton onClick={handleDeleteChatGroupClick}>
                             <MdDelete color='red' size={24}/>
                         </DeleteButton>
                     </PageWithSidebar.MainContent.HeaderBar>
