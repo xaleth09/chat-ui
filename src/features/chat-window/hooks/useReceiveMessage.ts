@@ -1,18 +1,16 @@
 import {useDispatch} from "react-redux";
-import {useSelectCurrentUserId} from "../../../store/users/selectors.ts";
 import {useSelectMessageIdsByChatGroupId} from "../../../store/chatGroups/selectors.ts";
-import {ChatGroupId} from "../../../types.ts";
+import {ChatGroupId, UserId} from "../../../types.ts";
 import {addMessage} from "../../../store/messages";
 import {useCallback} from "react";
 import {addMessageToChatGroup} from "../../../store/chatGroups";
 
-export const useSendMessage = ({chatGroupId}: {chatGroupId: ChatGroupId | null | undefined}) => {
+export const useReceiveMessage = ({chatGroupId}: { chatGroupId: ChatGroupId | null | undefined, }) => {
     const dispatch = useDispatch();
-    const currentUserId = useSelectCurrentUserId();
     const messageIds = useSelectMessageIdsByChatGroupId(chatGroupId);
 
-    const sendMessage = useCallback(({content}: { content: string }) => {
-        if(!chatGroupId){
+    const sendMessage = useCallback(({userId}: {userId: UserId }) => {
+        if (!chatGroupId) {
             return;
         }
 
@@ -20,8 +18,8 @@ export const useSendMessage = ({chatGroupId}: {chatGroupId: ChatGroupId | null |
 
         const newMessage = {
             id: newMessageId,
-            sender_user_id: currentUserId,
-            content,
+            sender_user_id: userId,
+            content: 'Lorem ipsum odor amet, consectetuer adipiscing elit. At vivamus auctor; cubilia dis velit cursus.',
             date_sent: new Date().toISOString(),
             date_deleted: null,
             date_read: null,
@@ -30,7 +28,7 @@ export const useSendMessage = ({chatGroupId}: {chatGroupId: ChatGroupId | null |
 
         dispatch(addMessage({message: newMessage}));
         dispatch(addMessageToChatGroup({chatGroupId, newMessageId}));
-    }, [chatGroupId, currentUserId, dispatch, messageIds.length]);
+    }, [chatGroupId, dispatch, messageIds.length]);
 
     return {
         sendMessage

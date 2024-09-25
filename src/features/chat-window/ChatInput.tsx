@@ -7,17 +7,18 @@ import {useSendMessage} from "./hooks/useSendMessage.ts";
 import {useSelectSelectedChatGroupId} from "../../store/chatGroups/selectors.ts";
 
 const ChatBox = styled(Row)`
-    margin-top: auto;
+    background-color: white;
     border-top: 1px solid darkgrey;
     padding: ${SPACING.XS.px};
     gap: ${SPACING.XXXS.px};
 `;
 
-const Input = styled.textarea`
+const Input = styled.textarea<{disabled: boolean}>`
     border: 1px solid darkgrey;
     padding: ${SIZES.XS.px} ${SIZES.SM.px};
     border-radius: ${SIZES.MD.px};
     width: 100%;
+    ${({disabled}) => disabled ? `background-color: lightgrey;`:''}
 `;
 
 const SendButton = styled.button<{ disabled: boolean }>`
@@ -28,6 +29,7 @@ const SendButton = styled.button<{ disabled: boolean }>`
     border: none;
     text-align: center;
     cursor: ${({disabled}) => disabled ? `not-allowed` : `pointer`};
+    ${({disabled}) => disabled ? `background-color: lightgrey;`:''}
 `;
 
 const SendIcon = styled(MdSend)`
