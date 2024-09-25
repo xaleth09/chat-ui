@@ -22,6 +22,7 @@ const Avatar = styled(Column)`
 `;
 
 const Bubble = styled(Column)<{ $sentByCurrentUser: boolean }>`
+    max-width: 70%;
     border-radius: ${SIZES.MD.px};
     padding: ${SPACING.XXS.px} ${SPACING.MD.px};
     background-color: ${({$sentByCurrentUser}) => $sentByCurrentUser ? 'lightskyblue' : 'lightgreen'};
